@@ -82,6 +82,8 @@ Vibe Coding 时的"术语翻译器"。用户用口语描述效果（"鼠标放�
 
 做"不廉价"的高品质 Web 界面。按用途分流：**brand 类**（落地页/品牌站/hero 页，靠 WebGL/Three.js/GSAP 做视觉奇观）vs **product 类**（后台/工作台/数据表/发布向导，重清晰、密度、可用性）。自带配色库（带色温的中性色阶 + 16 强调色）、反 AI-slop 黑名单、审计清单。支持动词命令（audit/bolder/soul/animate 等）做定向迭代。
 
+**impeccable**（https://github.com/pbakaus/impeccable）——同是高品质前端设计 skill，由 Anthropic 官方 frontend-design skill 演化而来（作者 Paul Bakaus，Apache 2.0）：1 个 skill、23 个命令、59 条确定性检测规则、浏览器实时迭代，比 finesse-ui 更激进，要求按获奖设计总监标准"all out"交付。
+
 ## neon / neon-postgres
 
 Neon 平台向导。Neon 现在不只是 Serverless Postgres，还打包了 Auth（托管 Better Auth）、对象存储（S3 兼容）、计算函数、AI Gateway，全部可分支。`neon` 是总览/路由，`neon-postgres` 是 Postgres 专项（连接池、分支、自动缩放、scale-to-zero、即时恢复）。核心工作流是"分支优先"。
