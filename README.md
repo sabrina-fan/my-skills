@@ -80,7 +80,7 @@ Vibe Coding 时的"术语翻译器"。用户用口语描述效果（"鼠标放�
 
 ## finesse-ui
 
-仓库：https://github.com/sabrina-fan/finesse-ui（镜像，上游 mouse-lin/finesse-skill，MIT）
+仓库：https://github.com/mouse-lin/finesse-skill（MIT）
 
 做"不廉价"的高品质 Web 界面。按用途分流：**brand 类**（落地页/品牌站/hero 页，靠 WebGL/Three.js/GSAP 做视觉奇观）vs **product 类**（后台/工作台/数据表/发布向导，重清晰、密度、可用性）。自带配色库（带色温的中性色阶 + 16 强调色）、反 AI-slop 黑名单、审计清单。支持动词命令（audit/bolder/soul/animate 等）做定向迭代。
 
