@@ -94,6 +94,24 @@ Neon 平台向导。Neon 现在不只是 Serverless Postgres，还打包了 Auth
 
 写 skill 的方法论参考。核心讲"可预测性"——agent 每次走同样流程而非产出同样输出才是美德；区分 model-invoked（靠描述自动触发、占 context）vs user-invoked（手敲、占记忆）两种调用方式该怎么选。写好 description 的原则（前置关键词、列触发分支、每个字都值 context load）。
 
+## eli5
+
+仓库：https://github.com/anthropics/claude-plugins-community/tree/main/eli5（官方社区插件库）
+
+Anthropic 官方社区插件里的"讲人话"skill。`/eli5 <topic>` 或要求用大白话解释某个概念时触发，产出大图少字、零基础也能看懂的 HTML 图解页面。整个 skill 只有一个 SKILL.md，复制即用。
+
+## dg-ai-notes
+
+仓库：https://github.com/buchidonggua/dg-ai-notes
+
+Pi-Agent（生产级开源 Agent SDK，OpenClaw 等产品的底层框架）的源码解读和二次开发实战电子书，在线版 [dg-ai-notes.pages.dev](https://dg-ai-notes.pages.dev)。除 TS/Python 双版本源码拆解、7 章实战教程外，还带配套 skill **dg-piagent**：装进 agent 后从"SDK 功能"和"场景应用"两个视角装订成册，写 pi-agent 代码时 AI 直接查 skill 完成开发，不用翻文档。
+
+## lieflat-charts
+
+仓库：https://github.com/larashero3-dotcom/lieflat-charts（moxt.ai 出品，MIT）
+
+数据可视化与报告生成 skill，兼容 Claude Code / Codex 等一切 SKILL.md 格式的 agent。用统一的字体、留白、线条、动效建立视觉语法，三种风格分流：**Lupi**（编辑叙事型，论文/年报/数据故事）、**Glance**（快速判断型，粗柱大数字，周报/dashboard）、**Basics**（基础编辑型，柱线环 + 编辑排版）。另含 12 套中英文整页报告模板，默认只做有编辑感的图表，明确要求报告/海报/白皮书时才生成整页 HTML；色彩上 Mono 黑白灰保底，另有青瓷蓝/椰林绿/编辑部红三套彩色色系，支持自定义品牌色板。
+
 ---
 
 # 四、我沉淀的 skill
