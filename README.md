@@ -50,23 +50,33 @@ ask-matt → grill-with-docs → to-spec → to-tickets → implement(+tdd) → 
 
 ## beautiful-ui（AI 原生界面复刻）
 
-[beautifului.dev](https://www.beautifului.dev/) 是一套给 AI 应用的 UI 原语：流式文本（Streaming Text）、思考轨迹（Thinking）、人审确认卡（Approval Card）、提示输入栏（Prompt Bar）、洞察卡组（Insight Cards）等，自带 shimmer、闪烁光标、滑入悬停等动画，MIT 协议，copy-paste 即用。它面向的是 React/Web 技术栈。
+地址：https://www.beautifului.dev （网站参考，MIT，无独立 GitHub repo）
+
+一套给 AI 应用的 UI 原语：流式文本（Streaming Text）、思考轨迹（Thinking）、人审确认卡（Approval Card）、提示输入栏（Prompt Bar）、洞察卡组（Insight Cards）等，自带 shimmer、闪烁光标、滑入悬停等动画，copy-paste 即用。面向 React/Web 技术栈。
 
 **怎么复刻到 uni-app / wot-design-uni / Vue 等其它技术栈**——核心是拆交互、不抄样式。每个组件先抽出它的核心状态变量（比如流式文本的本质是 `text` + `active` 两个 prop——输出中显示光标、结束消失），状态对了换什么框架都一样；动画尽量用原生 CSS（`@keyframes`、小程序不支持的就降级）；宿主框架已有的原子控件（图标、加载、弹层）直接复用，组件逻辑自己写；颜色/圆角收敛到 CSS 变量统一换肤。具体每种 AI 组件的复刻方式要看它自己的交互特性，没有固定模板。
 
 ## RTK（Rust Token Killer）
 
-装好后，在所有 agent 的全局配置（`AGENTS.md` 或 `CLAUDE.md`）里加一条规则：所有 shell 命令前加 `rtk` 前缀（如 `rtk git status`、`rtk npm run build`），它会压缩命令输出、节省 token。用 `rtk gain` 看节省统计。
+地址：https://github.com/dwdollar/rtk
+
+所有 shell 命令前加 `rtk` 前缀（如 `rtk git status`、`rtk npm run build`），自动压缩命令输出、节省 token。`rtk gain` 看节省统计。配合任何 AI coding agent 使用——越是大输出命令（编译日志、目录树）省得越多。
 
 ## ponytail
+
+地址：https://github.com/DietrichGebert/ponytail（MIT）
 
 AI 编码 agent 的"懒惰资深开发"规则。强制走一把梯子选最简方案：先问这事该不该做（YAGNI）→ 代码库里有没有现成的 → 标准库能不能干 → 平台原生功能够不够 → 已装的依赖能不能解决 → 能不能一行搞定 → 最后才写最少能跑的代码。禁止未要求的抽象、无用脚手架、"以后再说"的预留代码。支持 `/ponytail lite|full|ultra` 三档强度，默认 full，任何编码任务都自动生效。修 bug 时强制找根因而非补症状。
 
 ## pristine（纯净原则）
 
+地址：https://github.com/newbanser/pristine-skill（MIT）
+
 四层因果链对抗熵增——思想→规划→执行→输出，上层不纯会逐层放大成下游冗余。核心准则：一切都像第一次写那样写。思想层追溯前提、不藏假设；规划层目标先行、拒伪需求、先校验后执行；执行层只做计划内的事、工具最小化、每轮重述状态；输出层产物和对话都要纯净、清晰、节约。跨平台适配 Claude Code / Codex / OpenCode 等，在实现、重构、修 bug、写文档、做计划时自动触发。
 
 ## anti-slop
+
+地址：https://github.com/dmmulroy/anti-slop（MIT）
 
 一组 Oxlint 规则，拦截 AI 生成代码的坏味道：链式类型断言、`unknown` 滥用、`Record<string, unknown>` 泛滥等。vendor 方式安装（源码拷进项目，不是 npm 依赖）。先判断项目是否适用（要有 TS/JS 源码），按框架关掉冲突规则（NestJS 关 `no-object-parameters`、测试 mock 关 `no-module-mocking` 等），再配置、试跑、处理报错。
 
@@ -86,27 +96,23 @@ Vibe Coding 时的"术语翻译器"。用户用口语描述效果（"鼠标放�
 
 **impeccable**（https://github.com/pbakaus/impeccable）——同是高品质前端设计 skill，由 Anthropic 官方 frontend-design skill 演化而来（作者 Paul Bakaus，Apache 2.0）：1 个 skill、23 个命令、59 条确定性检测规则、浏览器实时迭代，比 finesse-ui 更激进，要求按获奖设计总监标准"all out"交付。
 
-## neon / neon-postgres
-
-Neon 平台向导。Neon 现在不只是 Serverless Postgres，还打包了 Auth（托管 Better Auth）、对象存储（S3 兼容）、计算函数、AI Gateway，全部可分支。`neon` 是总览/路由，`neon-postgres` 是 Postgres 专项（连接池、分支、自动缩放、scale-to-zero、即时恢复）。核心工作流是"分支优先"。
-
 ## writing-great-skills
 
-写 skill 的方法论参考。核心讲"可预测性"——agent 每次走同样流程而非产出同样输出才是美德；区分 model-invoked（靠描述自动触发、占 context）vs user-invoked（手敲、占记忆）两种调用方式该怎么选。写好 description 的原则（前置关键词、列触发分支、每个字都值 context load）。
+写 skill 的方法论参考（社区流传，无独立 GitHub repo）。核心讲"可预测性"——agent 每次走同样流程而非产出同样输出才是美德；区分 model-invoked（靠描述自动触发、占 context）vs user-invoked（手敲、占记忆）两种调用方式该怎么选。写好 description 的原则（前置关键词、列触发分支、每个字都值 context load）。
 
-## eli5
+## eli5（⏳ 还没用过）
 
 仓库：https://github.com/anthropics/claude-plugins-community/tree/main/eli5（官方社区插件库）
 
 Anthropic 官方社区插件里的"讲人话"skill。`/eli5 <topic>` 或要求用大白话解释某个概念时触发，产出大图少字、零基础也能看懂的 HTML 图解页面。整个 skill 只有一个 SKILL.md，复制即用。
 
-## dg-ai-notes
+## dg-ai-notes（⏳ 还没用过）
 
 仓库：https://github.com/buchidonggua/dg-ai-notes
 
 Pi-Agent（生产级开源 Agent SDK，OpenClaw 等产品的底层框架）的源码解读和二次开发实战电子书，在线版 [dg-ai-notes.pages.dev](https://dg-ai-notes.pages.dev)。除 TS/Python 双版本源码拆解、7 章实战教程外，还带配套 skill **dg-piagent**：装进 agent 后从"SDK 功能"和"场景应用"两个视角装订成册，写 pi-agent 代码时 AI 直接查 skill 完成开发，不用翻文档。
 
-## lieflat-charts
+## lieflat-charts（⏳ 还没用过）
 
 仓库：https://github.com/larashero3-dotcom/lieflat-charts（moxt.ai 出品，MIT）
 
