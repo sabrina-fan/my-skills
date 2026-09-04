@@ -152,28 +152,46 @@ Pi-Agent（生产级开源 Agent SDK，OpenClaw 等产品的底层框架）的�
 
 # 五、开发工具
 
-以下不是 skill，而是本机常驻的 CLI / 桌面工具，配合各 AI coding agent 使用。
+以下不是 skill，而是本机常驻的 CLI / 桌面工具，配合各 AI coding agent 使用。平台支持一栏只标 Win/Mac。
 
 ## opencodex（Codex 通用供应商代理）
 
-npm：[@bitkyc08/opencodex](https://www.npmjs.com/package/@bitkyc08/opencodex)
+地址：[npm @bitkyc08/opencodex](https://www.npmjs.com/package/@bitkyc08/opencodex) ｜ 平台：跨平台（CLI）
 
 给 OpenAI Codex CLI 套一层本地代理（`ocx start` 启动），把请求转发到你指定的模型供应商（智谱、DeepSeek、自建端点等），不依赖 OpenAI 官方额度。`ocx sync` 自动拉取供应商模型列表注入 Codex 配置；`ocx stop` / `ocx restore` 一键切回原生 Codex。还支持后台 service 模式和 codex-shim（启动 codex 时自动拉起代理）。
 
 ## Cockpit Tools（AI IDE 多账号管理）
 
-仓库：https://github.com/jlcodes99/cockpit-tools
+地址：https://github.com/jlcodes99/cockpit-tools ｜ 平台：仅 Mac
 
-macOS 桌面应用，统一管理各家 AI IDE 的账号：Antigravity / Codex / GitHub Copilot / Windsurf 等。多账号一键切换、配额用量查看，省去在终端手动改配置文件。`com.jlcodes.cockpit-tools`。
+macOS 桌面应用，统一管理各家 AI IDE 的账号：Antigravity / Codex / GitHub Copilot / Windsurf 等。多账号一键切换、配额用量查看，**还支持多开 Claude Code 实例**——同一个界面上跑多个独立的 Claude Code 会话，不用开多个终端窗口手动切换。省去在终端手动改配置文件的麻烦。
 
-## opencode（终端 AI coding agent TUI）
+## ego lite（AI Agent 浏览器）
 
-仓库：https://github.com/sst/opencode
+地址：https://lite.ego.app ｜ 平台：仅 Mac（Windows 版开发中）
 
-终端里的 AI coding agent，TUI 界面，支持 ACP（Agent Client Protocol）和 MCP（Model Context Protocol）服务器管理。自带 project 模式直接打开当前目录开始编码，轻量、可替代 Claude Code / Codex CLI 做日常开发。
+专为 AI agent 设计的 Chromium 浏览器。agent 在隔离空间里复用用户的登录状态，不和人抢浏览器窗口。通过 heredoc CLI（`ego-lite nodejs <<'EOF'`）调用内置 snapshotText / click / js / cdp 等 helper 驱动真实浏览器：打开页面、填表单、点按钮、截图、抓数据、测 Web 应用。优先于其它 headless 或 web fetch 工具使用。
 
-## RTK（Rust Token Killer）
+## StayAwake（防止 Mac 休眠）
 
-仓库：https://github.com/dwdollar/rtk（或 [crates.io](https://crates.io/crates/rtk)）
+地址：[ty-teo.github.io/StayAwake](https://ty-teo.github.io/StayAwake/) ｜ 平台：仅 Mac
 
-所有 shell 命令前加 `rtk` 前缀（如 `rtk git status`、`rtk npm run build`），自动压缩命令输出，大幅减少 agent 的 token 消耗。`rtk gain` 查看节省统计。配合任何 AI coding agent 使用都有效——越是大输出命令（编译日志、目录树）省得越多。
+菜单栏常驻小工具，一键设置系统级 power assertion 让 Mac 不休眠（屏幕变暗、系统进入睡眠都阻止）。跑长任务（编译、部署、模型推理、agent 自动化）时防止机器半路睡着中断。点击即切换，比 `caffeinate` 命令更直观。
+
+## Battuta（键盘音效）
+
+地址：https://github.com/wormforce/battuta ｜ 平台：Mac + Win
+
+打字时播放机械键盘 / 打字机音效的桌面应用，内置多种音效风格。纯娱乐向，让长时间编码有手感。开源（MIT），可在仓库里选自己喜欢的音效包。
+
+## Typeless（AI 语音听写）
+
+地址：https://www.typeless.com ｜ 平台：Mac + Win（另有 iOS / Android）
+
+AI 驱动的语音输入法。按住快捷键说话，自动转写成文字并插入光标位置，支持中英文混说、自动标点、专业术语纠正。比系统自带听写准确率高一大截，写文档、写 PR 描述、回消息时解放双手。
+
+## herdr（AI coding agent 终端工作区管理器）
+
+地址：https://github.com/herdrdev/herdr ｜ 文档：https://herdr.dev ｜ 平台：跨平台（单二进制支持 Mac / Linux / Win）
+
+终端里的 AI coding agent 工作区管理器。用 `herdr --session <name>` 创建命名会话，多个 agent 并行跑在不同的 session 里互不干扰；`herdr session attach` 随时切回某个会话；`herdr --remote <ssh-target>` 在远程服务器上启动 agent 会话。配合 Claude Code / Codex / pi-agent 等多 agent 场景，解决开一堆终端 tab 管不过来的问题。
