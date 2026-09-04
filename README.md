@@ -147,3 +147,33 @@ Pi-Agent（生产级开源 Agent SDK，OpenClaw 等产品的底层框架）的�
 仓库：https://github.com/sabrina-fan/deploy-tencent-project
 
 把当前项目部署/测试到腾讯云主机。用 Git 推代码、SSH、Docker Compose、健康检查、SSH 隧道、浏览器/API 测试。每项目按仓库隔离——独立部署目录、Compose 项目名、端口、容器、网络、卷，互不干扰。用 SSH alias 管理主机，不硬编码 IP。
+
+---
+
+# 五、开发工具
+
+以下不是 skill，而是本机常驻的 CLI / 桌面工具，配合各 AI coding agent 使用。
+
+## opencodex（Codex 通用供应商代理）
+
+npm：[@bitkyc08/opencodex](https://www.npmjs.com/package/@bitkyc08/opencodex)
+
+给 OpenAI Codex CLI 套一层本地代理（`ocx start` 启动），把请求转发到你指定的模型供应商（智谱、DeepSeek、自建端点等），不依赖 OpenAI 官方额度。`ocx sync` 自动拉取供应商模型列表注入 Codex 配置；`ocx stop` / `ocx restore` 一键切回原生 Codex。还支持后台 service 模式和 codex-shim（启动 codex 时自动拉起代理）。
+
+## Cockpit Tools（AI IDE 多账号管理）
+
+仓库：https://github.com/jlcodes99/cockpit-tools
+
+macOS 桌面应用，统一管理各家 AI IDE 的账号：Antigravity / Codex / GitHub Copilot / Windsurf 等。多账号一键切换、配额用量查看，省去在终端手动改配置文件。`com.jlcodes.cockpit-tools`。
+
+## opencode（终端 AI coding agent TUI）
+
+仓库：https://github.com/sst/opencode
+
+终端里的 AI coding agent，TUI 界面，支持 ACP（Agent Client Protocol）和 MCP（Model Context Protocol）服务器管理。自带 project 模式直接打开当前目录开始编码，轻量、可替代 Claude Code / Codex CLI 做日常开发。
+
+## RTK（Rust Token Killer）
+
+仓库：https://github.com/dwdollar/rtk（或 [crates.io](https://crates.io/crates/rtk)）
+
+所有 shell 命令前加 `rtk` 前缀（如 `rtk git status`、`rtk npm run build`），自动压缩命令输出，大幅减少 agent 的 token 消耗。`rtk gain` 查看节省统计。配合任何 AI coding agent 使用都有效——越是大输出命令（编译日志、目录树）省得越多。
