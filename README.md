@@ -96,9 +96,11 @@ Vibe Coding 时的"术语翻译器"。用户用口语描述效果（"鼠标放�
 
 **impeccable**（https://github.com/pbakaus/impeccable）——同是高品质前端设计 skill，由 Anthropic 官方 frontend-design skill 演化而来（作者 Paul Bakaus，Apache 2.0）：1 个 skill、23 个命令、59 条确定性检测规则、浏览器实时迭代，比 finesse-ui 更激进，要求按获奖设计总监标准"all out"交付。
 
-## writing-great-skills
+## oil-skill-creator（像做产品一样写 Skill）
 
-写 skill 的方法论参考（社区流传，无独立 GitHub repo）。核心讲"可预测性"——agent 每次走同样流程而非产出同样输出才是美德；区分 model-invoked（靠描述自动触发、占 context）vs user-invoked（手敲、占记忆）两种调用方式该怎么选。写好 description 的原则（前置关键词、列触发分支、每个字都值 context load）。
+地址：https://github.com/oil-oil/oil-skill-creator（MIT）
+
+用来创建、评审、整改和发布 Agent Skill 的 skill。关心的不只是说明有没有写完，而是这个 Skill 是否值得安装、能否稳定执行、是否适合能力较弱的模型、效果不好时能不能找到真正的设计原因。三种模式：**创建**（从零设计可复用 Skill，产出可执行可验证的文件）、**Review**（只读报告，按 P0/P1/P2 排列问题）、**整改**（确认需要修复后按需写入）。自带触发测试、效果聚合、本地评审页、可重复发布包，以及对 Token 开销和弱模型可读性的检查。
 
 ## eli5（⏳ 还没用过）
 
@@ -158,46 +160,46 @@ Pi-Agent（生产级开源 Agent SDK，OpenClaw 等产品的底层框架）的�
 
 # 五、开发工具
 
-以下不是 skill，而是本机常驻的 CLI / 桌面工具，配合各 AI coding agent 使用。平台支持一栏只标 Win/Mac，安装时间从本机首次部署算起。
+以下不是 skill，而是本机常驻的 CLI / 桌面工具，配合各 AI coding agent 使用。平台支持一栏只标 Win/Mac，时间为本人开始使用日期。
 
 ## opencodex（Codex 通用供应商代理）
 
-地址：[npm @bitkyc08/opencodex](https://www.npmjs.com/package/@bitkyc08/opencodex) ｜ 平台：跨平台（CLI）｜ 安装：2026-08
+地址：[npm @bitkyc08/opencodex](https://www.npmjs.com/package/@bitkyc08/opencodex) ｜ 平台：跨平台（CLI）｜ 开始使用：2026-08-27
 
 给 OpenAI Codex CLI 套一层本地代理（`ocx start` 启动），把请求转发到你指定的模型供应商（智谱、DeepSeek、自建端点等），不依赖 OpenAI 官方额度。`ocx sync` 自动拉取供应商模型列表注入 Codex 配置；`ocx stop` / `ocx restore` 一键切回原生 Codex。还支持后台 service 模式和 codex-shim（启动 codex 时自动拉起代理）。
 
 ## Cockpit Tools（AI IDE 多账号管理）
 
-地址：https://github.com/jlcodes99/cockpit-tools ｜ 平台：Mac + Win + Linux ｜ 安装：2026-08
+地址：https://github.com/jlcodes99/cockpit-tools ｜ 平台：Mac + Win + Linux ｜ 开始使用：2026-08-30
 
 通用的 AI IDE 账号管理工具，支持 Antigravity / Codex / GitHub Copilot / Windsurf / Kiro / Cursor / Grok CLI / CodeBuddy / Qoder / Trae / Zed / ZCode 等十余家。多账号一键切换、配额实时监控、**应用多开并行运行**（同一个界面上跑多个独立的 Claude Code / Codex 会话，不用开多个终端窗口手动切换）。从 GitHub releases 下载安装，或拉取源码自行构建。
 
 ## ego lite（AI Agent 浏览器）
 
-地址：https://lite.ego.app ｜ 平台：仅 Mac（Windows 版开发中）｜ 安装：2026-06
+地址：https://lite.ego.app ｜ 平台：仅 Mac（Windows 版开发中）｜ 开始使用：2026-06-03
 
 专为 AI agent 设计的 Chromium 浏览器。agent 在隔离空间里复用用户的登录状态，不和人抢浏览器窗口。通过 heredoc CLI（`ego-lite nodejs <<'EOF'`）调用内置 snapshotText / click / js / cdp 等 helper 驱动真实浏览器：打开页面、填表单、点按钮、截图、抓数据、测 Web 应用。优先于其它 headless 或 web fetch 工具使用。
 
 ## StayAwake（防止 Mac 休眠）
 
-地址：[ty-teo.github.io/StayAwake](https://ty-teo.github.io/StayAwake/) ｜ 平台：仅 Mac ｜ 安装：2026-07
+地址：[ty-teo.github.io/StayAwake](https://ty-teo.github.io/StayAwake/) ｜ 平台：仅 Mac ｜ 开始使用：2026-07-15
 
 菜单栏常驻小工具，一键设置系统级 power assertion 让 Mac 不休眠（屏幕变暗、系统进入睡眠都阻止）。跑长任务（编译、部署、模型推理、agent 自动化）时防止机器半路睡着中断。点击即切换，比 `caffeinate` 命令更直观。
 
 ## Battuta（键盘音效）
 
-地址：https://github.com/wormforce/battuta ｜ 平台：Mac + Win ｜ 安装：2026-08
+地址：https://github.com/wormforce/battuta ｜ 平台：Mac + Win ｜ 开始使用：2026-08-28
 
 打字时播放机械键盘 / 打字机音效的桌面应用，内置多种音效风格。纯娱乐向，让长时间编码有手感。开源（MIT），可在仓库里选自己喜欢的音效包。
 
 ## Typeless（AI 语音听写）
 
-地址：https://www.typeless.com ｜ 平台：Mac + Win（另有 iOS / Android）｜ 安装：2026-08
+地址：https://www.typeless.com ｜ 平台：Mac + Win（另有 iOS / Android）｜ 开始使用：2026-08-24
 
 AI 驱动的语音输入法。按住快捷键说话，自动转写成文字并插入光标位置，支持中英文混说、自动标点、专业术语纠正。比系统自带听写准确率高一大截，写文档、写 PR 描述、回消息时解放双手。
 
 ## herdr（AI coding agent 终端工作区管理器）
 
-地址：https://github.com/herdrdev/herdr ｜ 文档：https://herdr.dev ｜ 平台：跨平台（单二进制支持 Mac / Linux / Win）｜ 安装：2026-08
+地址：https://github.com/herdrdev/herdr ｜ 文档：https://herdr.dev ｜ 平台：跨平台（单二进制支持 Mac / Linux / Win）｜ 开始使用：2026-08-09
 
 终端里的 AI coding agent 工作区管理器。用 `herdr --session <name>` 创建命名会话，多个 agent 并行跑在不同的 session 里互不干扰；`herdr session attach` 随时切回某个会话；`herdr --remote <ssh-target>` 在远程服务器上启动 agent 会话。配合 Claude Code / Codex / pi-agent 等多 agent 场景，解决开一堆终端 tab 管不过来的问题。
